@@ -9,6 +9,9 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
+    // allParcels нужно сохранить?
+    // сейчас все посылки добавляются только в коробки
+    // еще методы расчета стоимости и упаковки по allPacrels проходятся
     private static List<Trackable> allTrackables = new ArrayList<>();
 
     private static ParcelBox<StandartParcel> standartParcelBox =
@@ -67,8 +70,8 @@ public class DeliveryApp {
     }
 
     private static void addParcel() {
-        IO.println("Какой тип посылки вы отправляете?");
-        IO.print("1 - Обычный\n" +
+        System.out.println("Какой тип посылки вы отправляете?");
+        System.out.print("1 - Обычный\n" +
                  "2 - Скоропортящийся\n" +
                  "3 - Хрупкий\n");
 
@@ -83,7 +86,7 @@ public class DeliveryApp {
 
         else if (choice == 2) {
 
-            IO.println("Срок хранения в днях");
+            System.out.println("Срок хранения в днях");
             int timeToLive = Integer.parseInt(scanner.nextLine());
 
             PerishableParcel parcel = new PerishableParcel(
@@ -107,7 +110,7 @@ public class DeliveryApp {
         }
 
         else {
-            IO.println("Неверный тип посылки");
+            System.out.println("Неверный тип посылки");
             }
         }
 
@@ -125,7 +128,7 @@ public class DeliveryApp {
             sum += parcel.calculateDeliveryCost();
         }
 
-        IO.println("Стоимость всей доставки " + sum);
+        System.out.println("Стоимость всей доставки " + sum);
     }
 
     private static void showTrackables() {
@@ -133,15 +136,15 @@ public class DeliveryApp {
 
             if (parcel instanceof Parcel) {
                 ((Parcel) parcel).getDescription();
-                IO.println("Описание" + ((Parcel) parcel).getDescription());
-                IO.println("Адрес доставки" + ((Parcel) parcel).getDeliveryAddress());
+                System.out.println("Описание" + ((Parcel) parcel).getDescription());
+                System.out.println("Адрес доставки" + ((Parcel) parcel).getDeliveryAddress());
             }
 
         }
     }
 
     private static void changeAllTrackablesLocation() {
-        IO.println("Напишите новый адрес посылок");
+        System.out.println("Напишите новый адрес посылок");
         String newLocation = scanner.nextLine();
         for (Trackable parcel : allTrackables) {
 
@@ -153,8 +156,8 @@ public class DeliveryApp {
     }
 
     private static void showParcelBox() {
-        IO.println("Какую коробку открыть?");
-        IO.print("1 - Обычный\n" +
+        System.out.println("Какую коробку открыть?");
+        System.out.print("1 - Обычный\n" +
                 "2 - Скоропортящийся\n" +
                 "3 - Хрупкий\n");
 
@@ -162,38 +165,38 @@ public class DeliveryApp {
 
         if (choice == 1) {
             for (Parcel parcel : standartParcelBox.getParcels()) {
-                IO.println("Название посылки " + parcel.getDescription());
-                IO.println("Вес " + parcel.getWeight());
+                System.out.println("Название посылки " + parcel.getDescription());
+                System.out.println("Вес " + parcel.getWeight());
             }
         }
 
         else if (choice == 2) {
             for (Parcel parcel : perishableParcelParcelBox.getParcels()) {
-                IO.println("Название посылки " + parcel.getDescription());
-                IO.println("Вес " + parcel.getWeight());
+                System.out.println("Название посылки " + parcel.getDescription());
+                System.out.println("Вес " + parcel.getWeight());
             }
         }
 
         else if (choice == 3) {
             for (Parcel parcel : fragileParcelParcelBox.getParcels()) {
-                IO.println("Название посылки " + parcel.getDescription());
-                IO.println("Вес " + parcel.getWeight());
+                System.out.println("Название посылки " + parcel.getDescription());
+                System.out.println("Вес " + parcel.getWeight());
             }
         }
 
     }
 
     private static ParcelInfo getInfo(){
-        IO.println("Адрес доставки...");
+        System.out.println("Адрес доставки...");
         String address = scanner.nextLine();
 
-        IO.println("Название посылки");
+        System.out.println("Название посылки");
         String description = scanner.nextLine();
 
-        IO.println("Когда нужно отправить");
+        System.out.println("Когда нужно отправить");
         int sendDay = Integer.parseInt(scanner.nextLine());
 
-        IO.println("Вес посылки в килограммах");
+        System.out.println("Вес посылки в килограммах");
         int weight = Integer.parseInt(scanner.nextLine());
 
         return new ParcelInfo(address, description, sendDay, weight);

@@ -21,16 +21,16 @@ public abstract class Parcel {
         return deliveryAddress;
     }
 
-    void packageItem(){
-        IO.println("Посылка " + getDescription() + " упакована");
+    public void packageItem(){
+        System.out.println("Посылка " + getDescription() + " упакована");
     }
 
-    void delivery(){
-        IO.println("Посылка " + getDescription() + " доставлена по адресу "
+    public void delivery(){
+        System.out.println("Посылка " + getDescription() + " доставлена по адресу "
                 + getDeliveryAddress());
     }
 
-    abstract int getDeliveryCost();
+    public abstract int getDeliveryCost();
 
     public int getSendDay() {
         return sendDay;
@@ -40,6 +40,6 @@ public abstract class Parcel {
         return weight;
     }
 
-    abstract int calculateDeliveryCost();
+    public abstract int calculateDeliveryCost();
 
 }

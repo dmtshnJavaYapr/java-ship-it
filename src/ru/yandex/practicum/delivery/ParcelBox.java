@@ -1,3 +1,5 @@
+package ru.yandex.practicum.delivery;
+
 import java.util.ArrayList;
 
 public class ParcelBox<T extends Parcel> {
@@ -14,23 +16,26 @@ public class ParcelBox<T extends Parcel> {
             sumWeight += t.getWeight();
         }
         if (sumWeight > maxWeight)
-            IO.println("Если добавить посылку, коробка будет слишком тяжелой");
+            System.out.println("Если добавить посылку, коробка будет слишком тяжелой");
         // Насколько часто вы в работе используете конструкции if else без фигурных скобок?
 
         else {
             parcels.add(parcel);
-            IO.println("Положили посылку в коробку");
+            System.out.println("Положили посылку в коробку");
         }
     }
 
     public void getAllParcels(){
         for (T parcel : parcels) {
-            IO.println("Посылка " + parcel.getDescription());
-            IO.println("Вес " + parcel.getWeight());
+            System.out.println("Посылка " + parcel.getDescription());
+            System.out.println("Вес " + parcel.getWeight());
         }
     }
 
-    public ArrayList<T> getParcels() {
+    protected ArrayList<T> getParcels() {
         return parcels;
     }
+    // Чатик подсказал, что нарушается инкапсуляция, если метод public...
+    // ..."Это позволяет внешнему коду сделать:
+    /// standartParcelBox.getParcels().clear();"
 }

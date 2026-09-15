@@ -1,16 +1,32 @@
-public class ParcelInfo extends Parcel {
+package ru.yandex.practicum.delivery;
+
+public class ParcelInfo{
+    private String description;
+    private int weight;
+    private String deliveryAddress;
+    private int sendDay;
+
 
     public ParcelInfo(String deliveryAddress, String description, int sendDay, int weight) {
-        super(deliveryAddress, description, sendDay, weight);
+        this.deliveryAddress = deliveryAddress;
+        this.description = description;
+        this.sendDay = sendDay;
+        this.weight = weight;
     }
 
-    @Override
-    public int getDeliveryCost(){
-        return Integer.parseInt(null);
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    @Override
-    public int calculateDeliveryCost(){
-        return Integer.parseInt(null);
+    public String getDescription() {
+        return description;
+    }
+
+    public int getSendDay() {
+        return sendDay;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 }

@@ -1,3 +1,5 @@
+package ru.yandex.practicum.delivery;
+
 public class StandartParcel extends Parcel {
     private static final int DELIVERY_COST = 2;
 
@@ -6,12 +8,12 @@ public class StandartParcel extends Parcel {
     }
 
     @Override
-    int getDeliveryCost(){
+    public int getDeliveryCost(){
         return DELIVERY_COST;
     }
 
     @Override
-    int calculateDeliveryCost(){
+    public int calculateDeliveryCost(){
         return DELIVERY_COST * getWeight();
     }
 }
