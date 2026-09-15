@@ -9,9 +9,10 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
-    // allParcels нужно сохранить?
-    // сейчас все посылки добавляются только в коробки
-    // еще методы расчета стоимости и упаковки по allPacrels проходятся
+    /* allParcels понадобился. У меня не получилось нормально отправлять...
+    ...каждую посылку отдельно в каждой коробке, легче было сделать...
+    ...if для каждого добавления, что если посылка добавляется в коробку, она сразу...
+    ...идет в allParcel. А оттуда вызываются методы отправки и расчета стоимости */
     private static List<Trackable> allTrackables = new ArrayList<>();
 
     private static ParcelBox<StandartParcel> standartParcelBox =
@@ -80,7 +81,8 @@ public class DeliveryApp {
 
         if (choice == 1) {
             StandartParcel parcel = (StandartParcel) createParcel(info, choice);
-            standartParcelBox.addParcel(parcel);
+            if (standartParcelBox.addParcel(parcel))
+                allParcels.add(parcel);
         }
 
 
@@ -97,12 +99,14 @@ public class DeliveryApp {
                     timeToLive
             );
 
-            perishableParcelParcelBox.addParcel(parcel);
+            if (perishableParcelParcelBox.addParcel(parcel))
+                allParcels.add(parcel);
         }
 
         else if (choice == 3) {
             FragileParcel parcel = (FragileParcel) createParcel(info, choice);
-            fragileParcelParcelBox.addParcel(parcel);
+            if (fragileParcelParcelBox.addParcel(parcel))
+                allParcels.add(parcel);
 
             if (fragileParcelParcelBox.getParcels().contains(parcel))
                 allTrackables.add(parcel);
@@ -133,13 +137,8 @@ public class DeliveryApp {
 
     private static void showTrackables() {
         for (Trackable parcel : allTrackables) {
-
-            if (parcel instanceof Parcel) {
-                ((Parcel) parcel).getDescription();
                 System.out.println("Описание" + ((Parcel) parcel).getDescription());
                 System.out.println("Адрес доставки" + ((Parcel) parcel).getDeliveryAddress());
-            }
-
         }
     }
 

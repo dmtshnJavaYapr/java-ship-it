@@ -10,18 +10,20 @@ public class ParcelBox<T extends Parcel> {
         this.maxWeight = maxWeight;
     }
 
-    public void addParcel(T parcel){
+    public boolean addParcel(T parcel){
         int sumWeight = parcel.getWeight();
         for (T t : parcels) {
             sumWeight += t.getWeight();
         }
-        if (sumWeight > maxWeight)
+        if (sumWeight > maxWeight) {
             System.out.println("Если добавить посылку, коробка будет слишком тяжелой");
-        // Насколько часто вы в работе используете конструкции if else без фигурных скобок?
+            return false;
+        }
 
         else {
             parcels.add(parcel);
             System.out.println("Положили посылку в коробку");
+            return true;
         }
     }
 
