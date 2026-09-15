@@ -126,7 +126,6 @@ public class DeliveryApp {
     }
 
     private static void calculateCosts() {
-        // Посчитать общую стоимость всех доставок и вывести на экран
         int sum = 0;
         for (Parcel parcel : allParcels) {
             sum += parcel.calculateDeliveryCost();

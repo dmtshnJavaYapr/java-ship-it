@@ -16,10 +16,7 @@ public class PerishableParcel extends Parcel{
     }
 
     public boolean isExpired(int currentDay){
-        return !(getSendDay() + timeToLive >= currentDay);
-        // По условию тех задания нужно вернуть false, если день отправки и срок...
-        // ...годности больше текущего дня
-        // критично, если вместо "!" использовать getSendDay() + timeToLive < currentDay?
+        return (getSendDay() + timeToLive < currentDay);
     }
 
     @Override

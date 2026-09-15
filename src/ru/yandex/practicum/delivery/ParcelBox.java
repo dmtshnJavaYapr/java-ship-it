@@ -1,6 +1,8 @@
 package ru.yandex.practicum.delivery;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ParcelBox<T extends Parcel> {
     private ArrayList<T> parcels = new ArrayList<>();
@@ -34,10 +36,9 @@ public class ParcelBox<T extends Parcel> {
         }
     }
 
-    protected ArrayList<T> getParcels() {
-        return parcels;
+    protected List<T> getParcels() {
+        return Collections.unmodifiableList(parcels);
     }
-    // Чатик подсказал, что нарушается инкапсуляция, если метод public...
-    // ..."Это позволяет внешнему коду сделать:
-    /// standartParcelBox.getParcels().clear();"
+    // Спасибо!
+
 }
